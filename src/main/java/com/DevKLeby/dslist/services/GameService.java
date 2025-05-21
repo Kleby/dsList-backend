@@ -2,6 +2,7 @@ package com.DevKLeby.dslist.services;
 
 import com.DevKLeby.dslist.DTO.GameDTO;
 import com.DevKLeby.dslist.DTO.GameMinDTO;
+import com.DevKLeby.dslist.Projections.GameMinProjection;
 import com.DevKLeby.dslist.entities.Game;
 import com.DevKLeby.dslist.repositories.GameRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,5 +28,11 @@ public class GameService {
         Game result = gameRepository.findById(id).get();
         GameDTO dto = new GameDTO(result);
         return dto;
+    }
+
+    @Transactional(readOnly = true)
+    public List<GameMinDTO> findByList(Long listId){
+        List<GameMinProjection> result = gameRepository.searchByList(listId);
+        return result.stream().map(l -> new GameMinDTO(l)).toList();
     }
 }
