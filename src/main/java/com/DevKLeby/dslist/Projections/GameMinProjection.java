@@ -3,7 +3,7 @@ package com.DevKLeby.dslist.Projections;
 public interface GameMinProjection {
     Long getId();
     String getTitle();
-    Integer getYear();
+    Integer getGameYear();
     String getImgUrl();
     String getShortDescription();
     Integer getPosition();
